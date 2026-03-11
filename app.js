@@ -41,13 +41,32 @@
 		* failed - not finished
 */
 
-let url = "https://meowfacts.herokuapp.com/"
+let url = "xhttps://meowfacts.herokuapp.com/";
+console.log(url);
 
-fetch(url)
-	.then(response => response.json())
+fetch(url).then(response => response.json())
 	.then(data => console.log(data))
+	.catch(error => console.log(error))
+	.then(() => console.log("This runs after fetch finished"));
+console.log("This code runs");
 
 /* 
 	? Fetch Process
-	* 1. 
+	* 1. Fetch grabs yoru resource and returns a Promise object
+	* this Promise object can be pending, fulfilled, or rejected
+	* 2. Use .then() resolver to catch the Promise and resolve it
+	* we catch the Promise inside a parameter, usually called response/res
+	* 3. The response is still useless because it's encapsulated as JSON
+	* 4. Utilize Response.json() method to read it and strip it
+	* 5. .json() returns another Promise which is useless to us
+	* 6. Use .then() resolver again to strip that Promise()
+	* we catch it into a parameter and do whatever we want (in our case, console.log)
+	* 7. We can use .catch() to do some error handling
+	* Only triggered if Promise gets rejected
+	* Allows us to reach that last .then() instead of ignoring it
+*/
+
+/* 
+	? Asynchronous Functions & Fetch
+	
 */
